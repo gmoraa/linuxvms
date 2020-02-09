@@ -50,10 +50,14 @@ else
        		printf "\n> Top 3 CPU usage processes: \n \n" >> ./$queryIP.log; printf '%s\n' "$c" >> ./$queryIP.log
 	d=`docker exec $queryIP ps aux --sort -rss | head -n 4`
        		printf "\n> Top 3 Memory usage processes: \n \n" >> ./$queryIP.log; printf '%s\n' "$d" >> ./$queryIP.log
-	e=`docker exec $queryIP df -h`
-		printf "\n> LinuxVM capacity as human redable: \n \n" >> ./$queryIP.log; printf '%s\n' "$e" >> ./$queryIP.log
-	f=`docker exec $queryIP df`
-		printf "\n> LinuxVM capacity as machine redable: \n \n" >> ./$queryIP.log; printf '%s\n' "$f" >> ./$queryIP.log
+	e=`docker exec $queryIP top -b -n 1`
+		printf "\n> LinuxVM CPU capacity as human redable: \n \n" >> ./$queryIP.log; printf '%s\n' "$e" >> ./$queryIP.log
+	f=`docker exec $queryIP cat /proc/stat`
+		printf "\n> LinuxVM CPU capacity as machine redable: \n \n" >> ./$queryIP.log; printf '%s\n' "$f" >> ./$queryIP.log
+	g=`docker exec $queryIP free -m`
+		printf "\n> LinuxVM Memory capacity as human redable: \n \n" >> ./$queryIP.log; printf '%s\n' "$g" >> ./$queryIP.log
+	h=`docker exec $queryIP cat /proc/meminfo`
+		printf "\n> LinuxVM Memory capacity as machine redable: \n \n" >> ./$queryIP.log; printf '%s\n' "$h" >> ./$queryIP.log
 fi
 
 if [ -f ./$queryIP.log ]
