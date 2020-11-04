@@ -3,7 +3,7 @@
 ## Usage
 
 ```
-Usage: This repository be default will create 3 Linux VMs locally, you will be able to query every server with it's IP.
+Usage: This repository by default will create 3 Linux VMs locally, you will be able to query every server with it's IP.
 
 Requirements for execution:
 
